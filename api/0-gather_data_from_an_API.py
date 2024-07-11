@@ -15,7 +15,7 @@ def get_employee_todo_progress(employee_id):
 
         employee_name = response_data.get("employee_name")
         total_tasks = len(response_data.get("todos"))
-        done_tasks = sum(1 for todo in response_data.get("todos") if todo.get \
+        done_tasks = sum(1 for todo in response_data.get("todos") if todo.get
                          ("status") == "Done")
 
         print(f"Employee: {employee_name} is done with tasks ({done_tasks} \
