@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-
+"""Python script that returns info about his/her TODO list progress"""
 import requests
 import sys
 
