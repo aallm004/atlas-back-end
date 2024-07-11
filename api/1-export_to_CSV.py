@@ -31,8 +31,9 @@ def get_employee_todo_progress(employee_id):
                 f'"{employee_name}",' + \
                 f'"{completed_todo}",' + \
                 f'"{todo_list}"'
-            
+
             f.write()
+
 
 if __name__ == "__main__":
     get_employee_todo_progress(int(sys.argv[1]))
