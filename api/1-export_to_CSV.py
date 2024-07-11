@@ -2,10 +2,10 @@
 """
 Python script that returns info about his/her TODO list progress
 """
-import urllib.request
-import sys
 import csv
 import json
+import sys
+import urllib.request
 
 
 def get_employee_todo_progress(employee_id):
