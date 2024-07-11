@@ -1,10 +1,11 @@
 #!/usr/bin/python3
-"""Python script that returns info about his/her TODO list progress """
+"""Python script that returns info about his/her TODO list progress"""
 import requests
 import sys
 
 
 def get_employee_todo_progress(employee_id):
+    """Function"""
     api_url = f"https://jsonplaceholder.typicode.com/"
 
     try:
