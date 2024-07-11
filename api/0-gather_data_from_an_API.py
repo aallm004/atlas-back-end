@@ -28,7 +28,7 @@ def get_employee_todo_progress(employee_id):
 
         for todo in todos_data:
             if todo.get("completed"):
-                print(f"\t{todo.get("title")}")
+                print(f"{todo.get('title')}")
 
     except requests.RequestException as e:
         print(f"Error fetching data: {e}")
