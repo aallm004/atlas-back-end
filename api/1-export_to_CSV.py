@@ -32,7 +32,7 @@ def get_employee_todo_progress(employee_id):
                 f'"{completed_todo}",' + \
                 f'"{todo_list}"'
 
-            f.write(out)
+            f.write(x)
 
 
 if __name__ == "__main__":
