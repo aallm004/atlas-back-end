@@ -4,6 +4,8 @@ Python script that returns info about his/her TODO list progress
 """
 import requests
 import sys
+import csv
+import json
 
 
 def get_employee_todo_progress(employee_id):
@@ -13,7 +15,7 @@ def get_employee_todo_progress(employee_id):
     todo_url = f"{base_url}/todos?userId={employee_id}"
 
     employee_info = requests.get(employee_url).json()
-    employee_name = employee_info['name']
+    employee_name = employee_info['username']
     todo_list = requests.get(todo_url, params={"userId": employee_id}).json()
 
     completed_todo = [x["title"] for x in todo_list if x["completed"]]
@@ -23,9 +25,14 @@ def get_employee_todo_progress(employee_id):
     print("Employee {} is done with tasks({}/{}):"
           .format(employee_name, total_complete, total_todo))
 
-    for todo in completed_todo:
-        print(f"\t {todo}")
-
+    with open(f'{employee_id}.csv', 'w') as f:
+        for todo in todo_list:
+            x = f'"{employee_id}",' + \
+                f'"{employee_name}",' + \
+                f'"{completed_todo}",' + \
+                f'"{todo_list}"'
+            
+            f.write()
 
 if __name__ == "__main__":
     get_employee_todo_progress(int(sys.argv[1]))
