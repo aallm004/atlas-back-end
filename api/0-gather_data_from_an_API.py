@@ -24,7 +24,7 @@ def get_employee_todo_progress(employee_id):
           .format(employee_name, total_complete, total_todo))
 
     for todo in completed_todo:
-        print(f"{todo}")
+        print(f"\t {todo}")
 
 
 if __name__ == "__main__":
