@@ -28,7 +28,7 @@ def get_employee_todo_progress(employee_id):
                 print(f"\t{todo.get('title')}")
 
     except requests.RequestException as e:
-        print(f"Error fethcing data: {e}")
+        print(f"Error fetching data: {e}")
 
     if len(sys.argv) > 1:
         print("Incorrect, not <employee_id>")
