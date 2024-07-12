@@ -37,9 +37,6 @@ def get_employee_todo_progress(employee_id):
         for todo in todo_list:
             writer.writerow([todo["id"], todo["title"], todo["completed"]])
 
-# ... (rest of your code)
-
-
     if len(sys.argv) != 2:
         print("Usage: python script.py <employee_id>")
         sys.exit(1)
