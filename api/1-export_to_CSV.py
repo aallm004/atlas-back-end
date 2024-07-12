@@ -13,7 +13,7 @@ def get_employee_todo_progress(employee_id):
     todo_url = f"{base_url}/todos?userId={employee_id}"
     
     employee_info = requests.get(employee_url).json()
-    employee_name = employee_info['name']
+    employee_name = employee_info['username']
     todo_list = requests.get(todo_url, params={"userId": employee_id}).json()
     
     completed_todo = [x["title"] for x in todo_list if x["completed"]]
