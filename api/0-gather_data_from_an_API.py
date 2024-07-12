@@ -2,8 +2,8 @@
 """
 Python script that returns info about his/her TODO list progress
 """
-import requests
 import sys
+import urllib.request
 
 
 def get_employee_todo_progress(employee_id):
@@ -12,9 +12,11 @@ def get_employee_todo_progress(employee_id):
     employee_url = f"{base_url}/users/{employee_id}"
     todo_url = f"{base_url}/todos?userId={employee_id}"
 
-    employee_info = requests.get(employee_url).json()
+    with urllib.request.urlopen(employee_url) as response:
+        employee_info = response.read().json()
     employee_name = employee_info['username']
-    todo_list = requests.get(todo_url, params={"userId": employee_id}).json()
+    with urllib.request.urlopen(todo_url) as response:
+        todo_list = response.read().json()
 
     completed_todo = [x["title"] for x in todo_list if x["completed"]]
     total_todo = len(todo_list)
@@ -24,7 +26,7 @@ def get_employee_todo_progress(employee_id):
           .format(employee_name, total_complete, total_todo))
 
     for todo in completed_todo:
-        print(f"\t{todo}")
+        print(f"\t {todo}")
 
     if __name__ == "__main__":
         get_employee_todo_progress(int(sys.argv[1]))
