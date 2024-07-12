@@ -32,7 +32,7 @@ def get_employee_todo_progress(employee_id):
             f'"{employee_name}",' + \
             f'"{completed_todo}",' + \
             f'"{todo_list}"'
-    
+
     with open(f'{employee_id}.csv', 'w') as f:
         f.write(x)
 
