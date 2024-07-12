@@ -26,7 +26,7 @@ if __name__ == "__main__":
             todo_list = response.read()
         todo_list = json.loads(todo_list)
 
-        employee_name = employee_info['name']
+        employee_name = employee_info['username']
 
         completed_todo = [x["title"] for x in todo_list if x["completed"]]
         total_todo = len(todo_list)
