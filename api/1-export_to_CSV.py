@@ -27,12 +27,18 @@ def get_employee_todo_progress(employee_id):
     print("Employee {} is done with tasks({}/{}):"
           .format(employee_name, total_complete, total_todo))
 
+# ... (previous code)
+
+# CSV Export
     csv_file_name = f"{employee_id}.csv"
-    with open(f'{employee_id}.csv', 'w', newline='') as f:
+    with open(csv_file_name, 'w', newline='') as f:
         writer = csv.writer(f, quoting=csv.QUOTE_ALL)
+        writer.writerow(["Task ID", "Title", "Completed"])
         for todo in todo_list:
-            writer.writerow([employee_id, employee_name,
-                             todo['completed'], todo['title']])
+            writer.writerow([todo["id"], todo["title"], todo["completed"]])
+
+# ... (rest of your code)
+
 
     if len(sys.argv) != 2:
         print("Usage: python script.py <employee_id>")
