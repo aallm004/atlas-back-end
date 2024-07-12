@@ -31,7 +31,7 @@ def get_employee_todo_progress(employee_id):
     with open(f'{employee_id}.csv', 'w', newline='') as f:
         writer = csv.writer(f, quoting=csv.QUOTE_ALL)
         for todo in todo_list:
-            writer.writerow([employee_id, employee_name, 
+            writer.writerow([employee_id, employee_name,
                              completed_todo, todo_list])
 
 
