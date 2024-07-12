@@ -2,45 +2,29 @@
 """
 Python script that returns info about his/her TODO list progress
 """
-import csv
-import json
+import requests
 import sys
-import urllib.request
 
 
 def get_employee_todo_progress(employee_id):
-
+    
     base_url = "https://jsonplaceholder.typicode.com/"
-
     employee_url = f"{base_url}/users/{employee_id}"
     todo_url = f"{base_url}/todos?userId={employee_id}"
-    user_url = f"{base_url}/users?id={employee_id}"
-
-    with urllib.request.urlopen(employee_url) as response:
-        employee_info = json.loads(response.read().decode())
-    with urllib.request.urlopen(employee_url) as response:
-        todo_list = response.read().json()
-    employee_name = employee_info['username']
-
+    
+    employee_info = requests.get(employee_url).json()
+    employee_name = employee_info['name']
+    todo_list = requests.get(todo_url, params={"userId": employee_id}).json()
+    
     completed_todo = [x["title"] for x in todo_list if x["completed"]]
     total_todo = len(todo_list)
     total_complete = len(completed_todo)
-
+    
     print("Employee {} is done with tasks({}/{}):"
           .format(employee_name, total_complete, total_todo))
 
-# CSV Export
-    csv_file_name = f"{employee_id}.csv"
-
-    with open(csv_file_name, 'w', newline='') as f:
-        writer = csv.writer(f, quoting=csv.QUOTE_ALL)
-        writer.writerow(["Task ID", "Title", "Completed"])
-        for todo in todo_list:
-            writer.writerow([employee_id, employee_name,
-                             todo["completed"], todo["title"]])
+    for todo in completed_todo:
+            print(f"\t{todo}")
 
     if __name__ == "__main__":
-        if len(sys.argv) < 2:
-            print("Usage: python 0-gather_data_from_an_API.py <employee_id>")
-            sys.exit(1)
         get_employee_todo_progress(int(sys.argv[1]))
