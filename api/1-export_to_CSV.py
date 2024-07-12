@@ -38,4 +38,3 @@ def get_employee_todo_progress(employee_id):
         print("Usage: python script.py <employee_id>")
         sys.exit(1)
     get_employee_todo_progress(int(sys.argv[1]))
-
