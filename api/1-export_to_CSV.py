@@ -7,37 +7,45 @@ import sys
 import urllib.request
 
 
-def get_employee_todo_progress(employee_id):
+if __name__ == "__main__":
 
-    base_url = "https://jsonplaceholder.typicode.com/"
-    employee_url = f"{base_url}/users/{employee_id}"
-    todo_url = f"{base_url}/todos?userId={employee_id}"
+    x = ""
 
-    with urllib.request.urlopen(employee_url) as response:
-        employee_info = response.read()
-    employee_info = json.loads(employee_info)
+    if len(sys.argv) > 1:
+        employee_id = int(sys.argv[1])
+    
+        base_url = "https://jsonplaceholder.typicode.com/"
+        employee_url = f"{base_url}/users/{employee_id}"
+        todo_url = f"{base_url}/todos?userId={employee_id}"
 
-    with urllib.request.urlopen(todo_url) as response:
-        todo_list = response.read()
-    todo_list = json.loads(todo_list)
+        with urllib.request.urlopen(employee_url) as response:
+            employee_info = response.read()
+        employee_info = json.loads(employee_info)
 
-    employee_name = employee_info['name']
+        with urllib.request.urlopen(todo_url) as response:
+            todo_list = response.read()
+        todo_list = json.loads(todo_list)
 
-    completed_todo = [x["title"] for x in todo_list if x["completed"]]
-    total_todo = len(todo_list)
-    total_complete = len(completed_todo)
+        employee_name = employee_info['name']
 
-    print("Employee {} is done with tasks({}/{}):"
-          .format(employee_name, total_complete, total_todo))
+        completed_todo = [x["title"] for x in todo_list if x["completed"]]
+        total_todo = len(todo_list)
+        total_complete = len(completed_todo)
 
-    with open(f'{employee_id}.csv', 'w') as f:
+        print("Employee {} is done with tasks({}/{}):"
+            .format(employee_name, total_complete, total_todo))
+
+
         for todo in todo_list:
-            x = f'"{employee_id}",' + \
+            completed = todo['completed']
+            title = todo['title']
+            x += f'"{employee_id}",' + \
                 f'"{employee_name}",' + \
-                f'"{completed_todo}",' + \
-                f'"{todo_list}"'
+                f'"{completed}",' + \
+                f'"{title}"'
+            
+        with open(f'{employee_id}.csv', 'w') as f:
             f.write(x)
 
-
-if __name__ == "__main__":
-    get_employee_todo_progress(int(sys.argv[1]))
+    else:
+        print("Usage: 1-export_to_CSV.py <employee_id>")
