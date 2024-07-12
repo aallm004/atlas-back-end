@@ -13,7 +13,7 @@ if __name__ == "__main__":
 
     if len(sys.argv) > 1:
         employee_id = int(sys.argv[1])
-    
+
         base_url = "https://jsonplaceholder.typicode.com/"
         employee_url = f"{base_url}/users/{employee_id}"
         todo_url = f"{base_url}/todos?userId={employee_id}"
@@ -33,8 +33,7 @@ if __name__ == "__main__":
         total_complete = len(completed_todo)
 
         print("Employee {} is done with tasks({}/{}):"
-            .format(employee_name, total_complete, total_todo))
-
+              .format(employee_name, total_complete, total_todo))
 
         for todo in todo_list:
             completed = todo['completed']
@@ -43,7 +42,7 @@ if __name__ == "__main__":
                 f'"{employee_name}",' + \
                 f'"{completed}",' + \
                 f'"{title}"'
-            
+
         with open(f'{employee_id}.csv', 'w') as f:
             f.write(x)
 
