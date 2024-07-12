@@ -11,7 +11,7 @@ import urllib.request
 def get_employee_todo_progress(employee_id):
 
     base_url = "https://jsonplaceholder.typicode.com/"
-    
+
     employee_url = f"{base_url}/users/{employee_id}"
     todo_url = f"{base_url}/todos?userId={employee_id}"
 
@@ -37,11 +37,11 @@ def get_employee_todo_progress(employee_id):
         writer = csv.writer(f, quoting=csv.QUOTE_ALL)
         writer.writerow(["Task ID", "Title", "Completed"])
         for todo in todo_list:
-            writer.writerow([employee_id, employee_name, todo["completed"], todo["title"]])
+            writer.writerow([employee_id, employee_name,
+                             todo["completed"], todo["title"]])
 
     if __name__ == "__main__":
         if len(sys.argv) < 2:
             print("Usage: python 0-gather_data_from_an_API.py <employee_id>")
             sys.exit(1)
         get_employee_todo_progress(int(sys.argv[1]))
-
