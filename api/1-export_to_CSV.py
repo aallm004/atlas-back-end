@@ -29,9 +29,9 @@ def get_employee_todo_progress(employee_id):
 
     csv_file_name = f"{employee_id}.csv"
     with open(f'{employee_id}.csv', 'w', newline='') as f:
-        write = csv.write(f, quoting=csv.QUOTE_ALL)
+        writer = csv.writer(f, quoting=csv.QUOTE_ALL)
         for todo in todo_list:
-            write.writerow([employee_id, employee_name, completed_todo, todo_list]
+            writer.writerow([employee_id, employee_name, completed_todo, todo_list])
 
 
 if __name__ == "__main__":
