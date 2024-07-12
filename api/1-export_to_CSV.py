@@ -32,16 +32,13 @@ if __name__ == "__main__":
         total_todo = len(todo_list)
         total_complete = len(completed_todo)
 
-        print("Employee {} is done with tasks({}/{}):"
-              .format(employee_name, total_complete, total_todo))
-
         for todo in todo_list:
             completed = todo['completed']
             title = todo['title']
             x += f'"{employee_id}",' + \
                 f'"{employee_name}",' + \
                 f'"{completed}",' + \
-                f'"{title}"'
+                f'"{title}"\n'
 
         with open(f'{employee_id}.csv', 'w') as f:
             f.write(x)
