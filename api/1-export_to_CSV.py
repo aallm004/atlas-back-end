@@ -33,6 +33,7 @@ def get_employee_todo_progress(employee_id):
             f'"{completed_todo}",' + \
             f'"{todo_list}"'
 
+    csv_file_name = f"{employee_id}.csv"
     with open(f'{employee_id}.csv', 'w') as f:
         f.write(x)
 
