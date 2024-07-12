@@ -27,14 +27,14 @@ def get_employee_todo_progress(employee_id):
     print("Employee {} is done with tasks({}/{}):"
           .format(employee_name, total_complete, total_todo))
 
+    for todo in todo_list:
+        x = f'"{employee_id}",' + \
+            f'"{employee_name}",' + \
+            f'"{completed_todo}",' + \
+            f'"{todo_list}"'
+    
     with open(f'{employee_id}.csv', 'w') as f:
-        for todo in todo_list:
-            x = f'"{employee_id}",' + \
-                f'"{employee_name}",' + \
-                f'"{completed_todo}",' + \
-                f'"{todo_list}"'
-
-            f.write(x)
+        f.write(x)
 
 
 if __name__ == "__main__":
