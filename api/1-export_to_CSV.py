@@ -32,7 +32,7 @@ def get_employee_todo_progress(employee_id):
         writer = csv.writer(f, quoting=csv.QUOTE_ALL)
         for todo in todo_list:
             writer.writerow([employee_id, employee_name,
-                             total_complete, total_todo])
+                             todo['completed'], todo['title']])
 
     if len(sys.argv) != 2:
         print("Usage: python script.py <employee_id>")
