@@ -29,8 +29,6 @@ def get_employee_todo_progress(employee_id):
     print("Employee {} is done with tasks({}/{}):"
           .format(employee_name, total_complete, total_todo))
 
-# ... (previous code)
-
 # CSV Export
     csv_file_name = f"{employee_id}.csv"
 
