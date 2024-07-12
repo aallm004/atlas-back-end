@@ -28,5 +28,10 @@ def get_employee_todo_progress(employee_id):
         print(f"\t {todo}")
 
 
-if __name__ == "__main__":
-    get_employee_todo_progress(int(sys.argv[1]))
+if __name__ == '__main__':
+    if len(sys.argv) < 2:
+        print("Usage: python3 0-gather_data_from_an_API.py EMPLOYEE_ID")
+    else:
+        employee_id = int(sys.argv[1])
+        get_employee_todo_progress(employee_id)
+
