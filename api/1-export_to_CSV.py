@@ -14,6 +14,7 @@ def get_employee_todo_progress(employee_id):
 
     employee_url = f"{base_url}/users/{employee_id}"
     todo_url = f"{base_url}/todos?userId={employee_id}"
+    user_url = f"{base_url}/users?id={employee_id}"
 
     with urllib.request.urlopen(employee_url) as response:
         employee_info = json.loads(response.read().decode())
