@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-Python script that exports all tasks from all employees in JSON format
+Paython script that exports all tasks from all employees in JSON format
 """
 import json
 import sys
