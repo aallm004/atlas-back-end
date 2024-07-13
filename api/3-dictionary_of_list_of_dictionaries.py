@@ -3,7 +3,7 @@
 Python script that returns info about his/her TODO list progress
 """
 import json
-import requests
+from flask import request
 import sys
 import urllib.request
 
@@ -35,7 +35,7 @@ def organize_tasks_by_user(tasks_data):
     return user_tasks
 
 
-def save_to_json(user_tasks):
+def save_to_json(user_tasks).
     with open("todo_all_employees.json", "w") as json_file:
         json.dump(user_tasks, json_file, indent=4)
 
