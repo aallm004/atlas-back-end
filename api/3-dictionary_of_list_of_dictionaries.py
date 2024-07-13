@@ -9,7 +9,7 @@ import urllib.request
 
 def fetch_employee_tasks():
     api_url = "https://your-api-endpoint.com/tasks"
-    response = requests.get(api_url)
+    response = request.get(api_url)
     tasks_data = response.json()
     return tasks_data
 
