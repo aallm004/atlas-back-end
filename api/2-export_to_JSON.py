@@ -33,7 +33,6 @@ def get_employee_todo_progress(employee_id):
 
     output_data = {str(user_id): completed_tasks}
 
-    # Write to JSON file
     filename = f"{user_id}.json"
     with open(filename, 'w') as json_file:
         json.dump(output_data, json_file, indent=4)
