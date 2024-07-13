@@ -3,9 +3,9 @@
 Python script that returns info about his/her TODO list progress
 """
 import json
+import requests
 import sys
 import urllib.request
-import requests
 
 
 def fetch_employee_tasks():
