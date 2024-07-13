@@ -6,12 +6,13 @@ import json
 import sys
 import urllib.request
 
+
 def fetch_employee_tasks():
-    # Replace with your actual API endpoint
     api_url = "https://your-api-endpoint.com/tasks"
     response = requests.get(api_url)
     tasks_data = response.json()
     return tasks_data
+
 
 def organize_tasks_by_user(tasks_data):
     user_tasks = {}
@@ -32,9 +33,11 @@ def organize_tasks_by_user(tasks_data):
 
     return user_tasks
 
+
 def save_to_json(user_tasks):
     with open("todo_all_employees.json", "w") as json_file:
         json.dump(user_tasks, json_file, indent=4)
+
 
 if __name__ == "__main__":
     tasks_data = fetch_employee_tasks()
