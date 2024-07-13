@@ -6,7 +6,6 @@ import json
 import sys
 import urllib.request
 
-
 def get_all_employee_todo_progress():
     base_url = "https://jsonplaceholder.typicode.com/users"
     todo_url = "https://jsonplaceholder.typicode.com/todos"
@@ -39,7 +38,6 @@ def get_all_employee_todo_progress():
         json.dump(all_employees_tasks, json_file, indent=2)
 
     print(f"Data exported to todo_all_employees.json")
-
 
 if __name__ == "__main__":
     get_all_employee_todo_progress()
