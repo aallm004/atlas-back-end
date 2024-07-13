@@ -1,45 +1,43 @@
 #!/usr/bin/python3
 """
-Paython script that exports all tasks from all employees in JSON format
+Python script that returns info about his/her TODO list progress
 """
 import json
 import sys
 import urllib.request
 
+def fetch_employee_tasks():
+    # Replace with your actual API endpoint
+    api_url = "https://your-api-endpoint.com/tasks"
+    response = requests.get(api_url)
+    tasks_data = response.json()
+    return tasks_data
 
-def get_all_employee_todo_progress():
-    base_url = "https://jsonplaceholder.typicode.com/users"
-    todo_url = "https://jsonplaceholder.typicode.com/todos"
+def organize_tasks_by_user(tasks_data):
+    user_tasks = {}
+    for task in tasks_data:
+        user_id = task["user_id"]
+        username = task["username"]
+        task_title = task["task_title"]
+        completed = task["completed"]
 
-    with urllib.request.urlopen(base_url) as response:
-        employees = json.loads(response.read())
+        if user_id not in user_tasks:
+            user_tasks[user_id] = []
 
-    with urllib.request.urlopen(todo_url) as response:
-        todo_list = json.loads(response.read())
+        user_tasks[user_id].append({
+            "username": username,
+            "task": task_title,
+            "completed": completed
+        })
 
-    all_employees_tasks = {}
+    return user_tasks
 
-    for employee in employees:
-        employee_id = employee["id"]
-        employee_name = employee["name"]
-        employee_tasks = []
-
-        for todo in todo_list:
-            if todo["userId"] == employee_id:
-                task_info = {
-                    "username": employee_name,
-                    "task": todo["title"],
-                    "completed": todo["completed"]
-                }
-                employee_tasks.append(task_info)
-
-        all_employees_tasks[employee_id] = employee_tasks
-
+def save_to_json(user_tasks):
     with open("todo_all_employees.json", "w") as json_file:
-        json.dump(all_employees_tasks, json_file, indent=2)
-
-    print(f"Data exported to todo_all_employees.json")
-
+        json.dump(user_tasks, json_file, indent=4)
 
 if __name__ == "__main__":
-    get_all_employee_todo_progress()
+    tasks_data = fetch_employee_tasks()
+    user_tasks = organize_tasks_by_user(tasks_data)
+    save_to_json(user_tasks)
+    print("Data exported to todo_all_employees.json")
