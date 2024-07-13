@@ -5,11 +5,12 @@ Python script that returns info about his/her TODO list progress
 import json
 import sys
 import urllib.request
+import requests
 
 
 def fetch_employee_tasks():
     api_url = "https://your-api-endpoint.com/tasks"
-    response = request.get(api_url)
+    response = requests.get(api_url)
     tasks_data = response.json()
     return tasks_data
 
